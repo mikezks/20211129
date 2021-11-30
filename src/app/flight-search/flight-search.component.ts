@@ -17,10 +17,6 @@ export class FlightSearchComponent implements OnInit {
   flights: Flight[] = [];
   selectedFlight: Flight | undefined;
 
-  get name() {
-    return this.flightService.name;
-  }
-
   constructor(private flightService: FlightService) { }
 
   ngOnInit(): void {
