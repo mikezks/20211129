@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Flight } from '../entities/flight';
+import { DefaultFlightService } from './default-flight.service';
 import { FlightService } from './flight.service';
 
 @Component({
   selector: 'app-flight-search',
   templateUrl: './flight-search.component.html',
-  styleUrls: ['./flight-search.component.css']
+  styleUrls: ['./flight-search.component.css'],
+  /* providers: [
+    { provide: FlightService, useClass: DefaultFlightService }
+  ] */
 })
 export class FlightSearchComponent implements OnInit {
   from: string = 'Hamburg';
@@ -13,9 +17,17 @@ export class FlightSearchComponent implements OnInit {
   flights: Flight[] = [];
   selectedFlight: Flight | undefined;
 
+  get name() {
+    return this.flightService.name;
+  }
+
   constructor(private flightService: FlightService) { }
 
   ngOnInit(): void {
+  }
+
+  changeName(): void {
+    this.flightService.name = 'New state set';
   }
 
   search(): void {
